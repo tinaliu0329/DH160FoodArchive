@@ -30,8 +30,8 @@ class Artifact(models.Model):
     creator = models.CharField(max_length = 500)
     description = models.TextField(blank = True)
     material = models.CharField(max_length = 20,choices = list(Choices.MATERIAL_TYPE_CHOICES.items()))
-    model3d = models.URLField(max_length = 400)
-    photo_image = StdImageField(upload_to = "photographs",variations={"thumbnail": {"width": 300, "height": 300}},
+    model3d = models.URLField(blank = True,max_length = 400)
+    photo_image = StdImageField(blank = True, upload_to = "photographs",variations={"thumbnail": {"width": 300, "height": 300}},
  )
 
 class Photograph(ArchiveDocument):
