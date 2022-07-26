@@ -20,6 +20,19 @@ class ArchiveDocument(models.Model):
         variations={"thumbnail": {"width": 300, "height": 300}},
     )
 
+class Artifact(models.Model):
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return self.id
+    name = models.CharField(max_length=500)
+    creator = models.CharField(max_length = 500)
+    description = models.TextField(blank = True)
+    material = models.CharField(max_length = 20,choices = list(Choices.MATERIAL_TYPE_CHOICES.items()))
+    model3d = models.URLField(max_length = 400)
+    photo_image = StdImageField(upload_to = "photographs",variations={"thumbnail": {"width": 300, "height": 300}},
+ )
 
 class Photograph(ArchiveDocument):
     photo_type = models.CharField(
