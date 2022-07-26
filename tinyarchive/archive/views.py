@@ -1,10 +1,21 @@
 from re import template
 from django.shortcuts import render
 from django.http import HttpResponse
-from archive.models import ArchiveDocument, Photograph
+from archive.models import ArchiveDocument, Photograph, Artifact
 from model_utils.managers import InheritanceManager
 from archive.consts import Choices
 
+def getArtifacts(context):
+    archive_artifacts = Artifact.objects.all()
+    for artifact in archive_artifacts:
+        iteminfo = {
+            "id":artifact.id,
+            "thumbnail":artifact.photo_image.thumbnail,
+            "name":artifact.name,
+            "description":artifact.description
+        }
+        context.append(iteminfo)
+    return context
 
 def index(request):
     context = {}
@@ -14,6 +25,7 @@ def index(request):
     """
     try:
         archive_items = ArchiveDocument.objects.all()
+        
         for item in archive_items:
             print(item.photo_image.thumbnail)
             archive_item_info = {
@@ -22,8 +34,9 @@ def index(request):
                 "name": item.name,
                 "description": item.description,
             }
-
             items_to_list.append(archive_item_info)
+        context = getArtifacts(context)
+
     except ArchiveDocument.DoesNotExist as e:
         #This exception gets suppressed and we pass an empty context to the template.
         #the template will know what to do with it. All other exceptions get raised.
