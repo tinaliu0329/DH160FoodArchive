@@ -56,12 +56,19 @@ class Artifact(ArchiveDocument):
     MAT_CERAMIC = 'ceramic'
     MAT_GLASS = 'glass'
     MAT_METAL = 'metal'
+    MAT_BAMBOO = "bamboo"
+    MAT_WOOD = "wood"
+    MAT_PORCELAIN = "porcelain"
 
     MATERIAL_CHOICES = [(MAT_OTHER, "Other"),
                         (MAT_PLASTIC, "Plastic"),
                         (MAT_CERAMIC, "Ceramic"),
                         (MAT_GLASS, "Glass"),
-                        (MAT_METAL,"Metal")]
+                        (MAT_METAL,"Metal"),
+                        (MAT_BAMBOO,"Bamboo"),
+                        (MAT_WOOD,"Wood"),
+                        (MAT_PORCELAIN,"Porcelain")
+                        ]
     material = models.CharField(
         max_length=50, choices=MATERIAL_CHOICES, default=MAT_GLASS)
     model3d = models.URLField(max_length=500, blank="True")
