@@ -17,7 +17,7 @@ class ArchiveDocument(models.Model):
     description = models.TextField(blank=True, null=False)
     creator = models.CharField(max_length=50, blank="True")
     photo_image = StdImageField(
-        upload_to="photographs/",
+        upload_to="photographs/", 
         variations={"thumbnail": {"width": 300, "height": 300}},
         null=True,
         blank = True,
