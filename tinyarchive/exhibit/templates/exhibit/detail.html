@@ -2,10 +2,14 @@
 {% load static %}
 {% block content %}
 <div class="breadcrumb">
-    <a href="/"> Tiny Library </a> / <a href="/exhibit"> Exhibits </a>
+    <a href="/"> Archive </a> / <a href="/exhibit"> Exhibits </a>
 </div>
 <div class="page_title">
     {{title}}
+</div>
+<br>
+<div class="exhibit_text">
+    {{exhibit_text}}
 </div>
 <div class="content">
     <div class="exhibit_items">
@@ -26,9 +30,7 @@
             {% endfor %}
         </ul>
     </div>
-    <div class="exhibit_text">
-        {{exhibit_text}}
-    </div>
+    
 </div>
 
 {% endblock %}
